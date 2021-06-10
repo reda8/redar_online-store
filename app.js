@@ -106,13 +106,13 @@ let truefirstName = capFirst + otherChar;
     request(options, function(error, response, body){
 
         if(error){
-            res.render("failure");
+            res.render("home");
         }else{
         if(response.statusCode === 200){
-            res.render("success", {fname: truefirstName, products: products});
+            res.render("success", {fname: truefirstName});
         }
         else{
-            res.redirect("failure");
+            res.redirect("home");
         }
     }
     });
@@ -137,7 +137,7 @@ app.post("/store", function(req,res){
     price: req.body.price,
     store: req.body.store,
     image: req.body.image,
-    category: req.body.category
+    // category: req.body.category
   }
 
   products.push(store);
@@ -145,18 +145,18 @@ app.post("/store", function(req,res){
   res.redirect("home")
 });
 
-app.get("/category/:name", function(req,res){
+app.get("/category/men", function(req,res){
 
-  let categoryName = req.params.name;
-console.log(categoryName);  
+//   let categoryName = req.params.name;
+// console.log(categoryName);  
   res.render("category-men", {products: products});
 
 });
-app.get("/category/:name", function(req,res){
+app.get("/category/jewelery", function(req,res){
   
-  let categoryName = req.params.name;
-  console.log(categoryName); 
-  res.render("category-jewelery", {products: products, name: categoryName});
+  // let categoryName = req.params.name;
+  // console.log(categoryName); 
+  res.render("category-jewelery", {products: products});
 });
 
 
